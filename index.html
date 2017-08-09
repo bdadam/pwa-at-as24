@@ -14,6 +14,7 @@
         font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      img { max-width: 100%; }
     </style>
   </head>
   <body>
@@ -21,19 +22,105 @@
 
 class: center, middle
 
-# Title
+# Progressive Web Apps @ Scout24
 
 ---
 
-# Agenda
+class: middle
 
-1. Introduction
-2. Deep-dive
-3. ...
+# What is a PWA?
+
+Progressive Web Apps are user experiences that have the reach of the web, and are:
+
+- **Reliable** - Load instantly and never show the downasaur, even in uncertain network conditions.
+
+- **Fast** - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
+
+- **Engaging** - Feel like a natural app on the device, with an immersive user experience.
+
+This new level of quality allows Progressive Web Apps to earn a place on the user's home screen.
 
 ---
 
-# Introduction
+class: middle
+
+# Key features
+
+- Add to home screen
+- Push notifications
+- Offline support
+
+---
+
+# ServiceWorker
+
+- Lifecycle completely separate from the webpage
+- Reacts on events (e.g. `fetch`, `message`)
+- Programmable network proxy, it can cache and/or modify the response
+- Has access to browser cache, IndexedDB, `postMessage`
+- No access to DOM (it is a worker)
+
+---
+
+# ServiceWorker @ AutoScout24
+
+- we added a ServiceWorker on our public funnel pages
+- we added a simple offline page
+- a manifest file
+
+---
+
+background-image: url(./offline-page.png)
+
+---
+
+```json
+{
+  "name": "AutoScout24",
+  "short_name": "AutoScout24",
+  "start_url": "/?ipl=home-screen&ipc=launch",
+  "orientation": "any",
+  "display": "standalone",
+  "icons": [
+      {
+          "src": "https://www.autoscout24.de/assets/external/home/1518/images/favicon/favicon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      }
+  ],
+  "theme_color": "#FF7500",
+  "background_color": "#003468"
+}
+```
+
+---
+
+# LightHouse
+
+- Built-in tool in Chrome Dev Tools
+- Can run in CI
+
+.center[![Lighthouse](./lighthouse.png)]]
+
+
+---
+
+# Future plans
+
+- Fix the current errors
+- Monitoring
+- Real offline page
+- Push notifications for e.g. price changes, search subscription, etc.
+
+---
+
+# Links
+
+- [Google Web Fundamentals](https://developers.google.com/web/progressive-web-apps/)
+- [Service Workers: an Introduction](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
+- [pwa.rocks](https://pwa.rocks/) - collection of PWAs
+- [Debug PWAs](https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps)
+- [PWA Checklist](https://developers.google.com/web/progressive-web-apps/checklist)
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
